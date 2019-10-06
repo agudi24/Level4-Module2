@@ -81,10 +81,16 @@ public class StringMethods {
 	// Return the sum of all numerical digits in the String
 	public static int numeralSum(String s) {
 		int sum = 0;
-		char c;
+		int c;
 		for (int i = 0; i < s.length(); i++) {
-		c = s.charAt(i);
-			sum += Character.getNumericValue(c);
+		if(s.charAt(i) == (int)s.charAt(i)) {
+			c = (int)s.charAt(i);
+			sum = sum + c;
+		}
+		else {
+			c = Character.getNumericValue(s.charAt(i));
+			sum = sum + c;
+		}
 		}
 		return sum;
 	}
@@ -96,12 +102,17 @@ public class StringMethods {
 
 	// Call Utitilities.encrypt to encrypt String s
 	public static String encrypt(String s, char key) {
-		return null;
+		byte[] b = s.getBytes();
+		byte a = (byte)key;
+		String encryption = Utilities.encrypt(b, a);
+		return encryption;
 	}
 
 	// Call Utilities.decrypt to decrypt the cyphertext
 	public static String decrypt(String s, char key) {
-		return null;
+		byte b = (byte)key;
+		String decryption = Utilities.decrypt(s, b);
+		return decryption;
 	}
 
 	// Return the number of words in String s that end with String substring
@@ -114,7 +125,9 @@ public class StringMethods {
 	// of String substring and the final occurrence
 	// You can assume that substring will appear at least twice
 	public static int distance(String s, String substring) {
-		return 0;
+		int distanceS = s.length();
+		int distanceSubstring = substring.length();
+		return (distanceS - (distanceSubstring * 2));
 	}
 
 	// Return true if String s is a palindrome
