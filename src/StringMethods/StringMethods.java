@@ -63,19 +63,25 @@ public class StringMethods {
 	// You cannot assume there are no extra spaces around the name, but you can
 	// assume there is only one space between the first and last name
 	public static String lineLeader(String s1, String s2, String s3) {
-		String str1 = s1.substring(s1.length() - 2, s1.length() - 1);
-		String str2 = s2.substring(s2.length() - 2, s2.length() - 1);
-		String str3 = s3.substring(s3.length() - 2, s3.length() - 1);
-		if(str1.compareTo(str2) > str2.compareTo(str1) && str1.compareTo(str3) > str3.compareTo(str1)) {
+		String[] str1 = s1.split(" ");
+		String[] str2 = s2.split(" ");
+		String[] str3 = s3.split(" ");
+		Character c1 = str1[1].charAt(0);
+		Character c2 = str2[1].charAt(0);
+		Character c3 = str3[1].charAt(0);
+		System.out.println(str1[1].charAt(0));
+		System.out.println(str2[1].charAt(0));
+		System.out.println(str3[1].charAt(0));
+		if(c1.compareTo(c2) < 0 && c1.compareTo(c3) < 0) {
 			return s1;
 		}
-		if(str2.compareTo(str1) > str1.compareTo(str2) && str2.compareTo(str3) > str3.compareTo(str2)) {
+		if(c2.compareTo(c1) < 0 && c2.compareTo(c3) < 0) {
 			return s2;
 		}
-		if(str3.compareTo(str1) > str1.compareTo(str3) && str3.compareTo(str2) > str2.compareTo(str3)) {
+		if(c3.compareTo(c1) < 0 && c3.compareTo(c2) < 0) {
 			return s3;
 		}
-		return s1;
+		return null;
 	}
 
 	// Return the sum of all numerical digits in the String
@@ -97,7 +103,14 @@ public class StringMethods {
 
 	// Return the number of times String substring appears in String s
 	public static int substringCount(String s, String substring) {
-		return 0;
+		int times = 0;
+		if(s.contains(substring)) {
+			times++;
+		}
+		for (int i = 0; i < s.length(); i++) {
+			
+		}
+		return times;
 	}
 
 	// Call Utitilities.encrypt to encrypt String s
